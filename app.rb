@@ -1,7 +1,7 @@
 require 'sinatra/base'
 
 class Battle < Sinatra::Base
-  enable :sessions  
+  enable :sessions
   set :session_secret, 'string'
 
   get '/' do
@@ -24,7 +24,7 @@ class Battle < Sinatra::Base
     p "Session after setting: #{session}"
     # $p1n = params[:player_1_name]
     # $p2n = params[:player_2_name]
-    redirect '/play'
+    redirect to('/play')
   end
 
   # start the server if ruby file executed directly

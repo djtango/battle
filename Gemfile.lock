@@ -66,6 +66,3 @@ DEPENDENCIES
   rspec-sinatra
   selenium-webdriver
   sinatra
-
-BUNDLED WITH
-   1.10.6
