@@ -15,5 +15,12 @@ feature 'first page' do
     sign_in_and_play
     expect(page).to have_content "fergus: 100"
   end
+end
 
+feature 'attack player 2' do
+  scenario 'player 1 hits attack button' do
+    sign_in_and_play
+    click_button('Attack')
+    expect(page).to have_content "Hit!"
+  end
 end

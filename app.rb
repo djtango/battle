@@ -14,6 +14,7 @@ class Battle < Sinatra::Base
     @player_1_name = session[:player_1_name]
     @player_2_name = session[:player_2_name]
     @player_2_HP = 100
+    @hit = session[:hit]
     erb(:play)
   end
 
@@ -25,6 +26,11 @@ class Battle < Sinatra::Base
     p "Session after setting: #{session}"
     # $p1n = params[:player_1_name]
     # $p2n = params[:player_2_name]
+    redirect to('/play')
+  end
+
+  post '/play' do
+    session[:hit] = "Hit!"
     redirect to('/play')
   end
 
