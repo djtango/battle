@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require './lib/player.rb'
+require './lib/attack.rb'
 
 class Battle < Sinatra::Base
   enable :sessions
@@ -12,7 +13,6 @@ class Battle < Sinatra::Base
   get '/play' do
     p "GET /play"
     p "session: #{session}"
-    @player_2_HP = 100
     erb(:play)
   end
 
@@ -26,6 +26,8 @@ class Battle < Sinatra::Base
   end
 
   post '/play' do
+    $attack = Attack.new
+    $player2.deduct_hp($attack.damage)
     redirect to('/attack')
   end
 

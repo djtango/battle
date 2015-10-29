@@ -21,6 +21,6 @@ feature 'attack player 2' do
   scenario 'player 1 hits attack button' do
     sign_in_and_play
     click_button('Attack')
-    expect(page).to have_content('deon hit fergus!')
+    expect(page).to have_content('deon hit fergus! Damage was 10HP')
   end
 end
