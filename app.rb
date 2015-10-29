@@ -14,7 +14,6 @@ class Battle < Sinatra::Base
     @player_1_name = session[:player_1_name]
     @player_2_name = session[:player_2_name]
     @player_2_HP = 100
-    @hit = session[:hit]
     erb(:play)
   end
 
@@ -30,8 +29,13 @@ class Battle < Sinatra::Base
   end
 
   post '/play' do
-    session[:hit] = "Hit!"
-    redirect to('/play')
+    redirect to('/attack')
+  end
+
+  get '/attack' do
+    @player_1_name = session[:player_1_name]
+    @player_2_name = session[:player_2_name]
+    erb(:attack)
   end
 
   # start the server if ruby file executed directly
