@@ -23,4 +23,11 @@ feature 'attack player 2' do
     click_button('Attack')
     expect(page).to have_content('deon hit fergus! Damage was 10HP')
   end
+
+  scenario 'returning to battle zone after successful attack' do
+    sign_in_and_play
+    click_button('Attack')
+    click_link('Okay')
+    expect(page).to have_content('fergus: 90')
+  end
 end
