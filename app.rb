@@ -1,6 +1,6 @@
 require 'sinatra/base'
 require './lib/player.rb'
-require './lib/attack.rb'
+require './lib/game.rb'
 
 class Battle < Sinatra::Base
   enable :sessions
@@ -10,28 +10,30 @@ class Battle < Sinatra::Base
     erb(:index)
   end
 
-  get '/play' do
-    p "GET /play"
-    p "session: #{session}"
-    erb(:play)
-  end
-
   post '/names' do
-    p "POST /names"
-    p "Session before setting: #{session}"
     $player1 = Player.new(params[:player_1_name])
     $player2 = Player.new(params[:player_2_name])
-    p "Session after setting: #{session}"
     redirect to('/play')
   end
 
+  get '/play' do
+    @player1 = $player1
+    @player2 = $player2
+    erb(:play)
+  end
+
   post '/play' do
-    $attack = Attack.new
-    $player2.deduct_hp($attack.damage)
+    $game = Game.new
+    @game = $game
+    # $attack = Attack.new
+    @player2 = $player2
+    @player2.deduct_hp(@game.attack)
     redirect to('/attack')
   end
 
   get '/attack' do
+    @player1 = $player1
+    @player2 = $player2
     erb(:attack)
   end
 
